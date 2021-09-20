@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 # 장고에서 제공하는 cbv의 제너릭뷰
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp.forms import AccountUpdateForm
 from accountapp.models import HelloWorld
@@ -57,5 +57,12 @@ class AccountUpdateView(UpdateView):
     form_class = AccountUpdateForm
     #성공햇다면 어디로 보낼것인가
     # 클래스형에서는 lazy사용..
+    context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
+
+class AccountDeleteView(DeleteView):
+    model = User
+    context_object_name = 'target_user'
+    success_url = reverse_lazy('accountapp:login')
+    template_name = 'accountapp/delete.html'
