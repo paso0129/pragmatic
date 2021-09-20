@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div style="text-align: center">
+        {#  view에 있는 routing으로 매핑  #}
+        <form action="{% url 'accountapp:create' %}" method="post">
+            {% csrf_token %}
+            {#    view에서  form클래스 지정해준거(UserCreationForm 를 가지고 즉 html로 만들어줌  #}
+            {{ form }}
+            <input type="submit" class="btn btn-primary">
+
+        </form>
+
+    </div>
+
+{% endblock %}
