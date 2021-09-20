@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <div>
+            <h4>Login</h4>
+        </div>
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {# login view에서 기본제공되는 form   #}
+                {{ form }}
+                <input type="submit" class="btn btn-primary" value="눌러줘">
+            </form>
+        </div>
+
+
+    </div>
+
+{% endblock %}
