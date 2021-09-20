@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')),
     path('profiles/', include('profileapp.urls')),
+    path('articles/', include('articleapp.urls')),
     # root setting의 경로 추가 방법
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
