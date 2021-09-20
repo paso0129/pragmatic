@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 # 장고에서 제공하는 cbv의 제너릭뷰
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accountapp.models import HelloWorld
 
@@ -45,3 +45,8 @@ class AccountCreateView(CreateView):
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/create.html'
 
+class AccountDetailView(DetailView):
+    model = User
+    # template에서 사용하는 유저 객체의 이름
+    context_object_name = 'target_user'
+    template_name = 'accountapp/detail.html'
