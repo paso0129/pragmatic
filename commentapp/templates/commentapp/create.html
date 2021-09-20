@@ -1,0 +1,29 @@
+{% load bootstrap4 %}
+{% block content %}
+
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+    <div class="mb-4">
+        <h4>Comment</h4>
+    </div>
+        {#  view에 있는 routing으로 매핑  #}
+        <form action="{% url 'commentapp:create' %}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% if user.is_authenticated %}
+
+
+            {#    view에서  form클래스 지정해준거(UserCreationForm 를 가지고 즉 html로 만들어줌  #}
+            <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+
+            {% else %}
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}"
+            class="btn btn-dark rounded-pill col-6 mt-3">
+                Login
+            </a>
+            {% endif %}
+            {#    article detail 페이지에서 받아온 pk값을 가져와서 서버로 전송   #}
+            <input type="hidden" name="article_pk" value="{{ article.pk }}">
+        </form>
+    </div>
+
+{% endblock %}
