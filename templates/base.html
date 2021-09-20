@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="ko">
+{#start of head#}
+{% include 'head.html' %}
+
+{#end of head#}
+
+
+
 <body>
-w
+
+{#start of header#}
+{% include 'header.html' %}
+{#end of header#}
+
+{% block content %}
+{% endblock %}
+
+{#start of footer#}
+{% include 'footer.html' %}
+{#end of footer#}
+
 </body>
+
 </html>
