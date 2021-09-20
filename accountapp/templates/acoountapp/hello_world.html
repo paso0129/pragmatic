@@ -4,6 +4,19 @@
 
     <div style="height: 20rem; background: aqua; border-radius: 1rem; margin: 2rem">
         <h1>testing</h1>
+
+    <form action="/account/hello_world/" method="post">
+
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="POST">
+    </form>
+
+        <h2>
+            {{ text }}
+        </h2>
+
     </div>
+
+
 
 {% endblock %}
