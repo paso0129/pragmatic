@@ -2,19 +2,25 @@
 
 {% block content %}
 
-    <div style="height: 20rem; background: aqua; border-radius: 1rem; margin: 2rem">
-        <h1>testing</h1>
+    <div style="border-radius: 1rem; margin: 2rem; text-align: center;">
+        <h1 style="font-family:'Nanum Brush Script', cursive; ">hello_world_LIST!</h1>
 
-    <form action="/account/hello_world/" method="post">
+        <form action="/account/hello_world/" method="post">
 
-        {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="POST">
-    </form>
+            {% csrf_token %}
+            <div>
+                <input type="text" name="hello_world_input">
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary" value="POST">
+            </div>
+        </form>
 
+        {% if hello_world_output %}
         <h2>
-            {{ text }}
+            {{ hello_world_output.text }}
         </h2>
-
+        {% endif %}
     </div>
 
 
