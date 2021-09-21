@@ -10,7 +10,7 @@
         <form action="{% url 'projectapp:create' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
-            {#    view에서  form클래스 지정해준거(UserCreationForm 를 가지고 즉 html로 만들어줌  #}
+            {#    view에서  form클래스 지정해준거(CreationForm 를 가지고 즉 html로 만들어줌  #}
             <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
         </form>
     </div>

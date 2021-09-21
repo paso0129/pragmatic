@@ -25,5 +25,6 @@ urlpatterns = [
     path('articles/', include('articleapp.urls')),
     path('comments/', include('commentapp.urls')),
     path('projects/', include('projectapp.urls')),
+    path('subscribe/', include('subscribeapp.urls')),
     # root setting의 경로 추가 방법
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
