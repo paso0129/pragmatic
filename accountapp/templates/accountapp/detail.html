@@ -11,14 +11,16 @@
 
 
 
-                {% if target_user.profile %}
+            {% if target_user.profile %}
                 <img src="{{ target_user.profile.image.url }}" alt="" style="height: 12rem;
                      width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
                 <h2 style="font-family: 'NanumSquareRoundOTFEB'">
                     {{ target_user.profile.nickname }}
                     {% if target_user == user %}
                         <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                            edit
+                            <span class="material-icons">
+                                edit
+                            </span>
                         </a>
                     {% endif %}
                 </h2>
@@ -26,39 +28,39 @@
                     {{ target_user.profile.message }}
                 </h5>
                 {#            페이지 주인의 즉 지금 접속한유저와 같다면 아래의 링크를 보내줌 #}
+            {% else %}
+                {% if target_user == user %}
+                    <a href="{% url 'profileapp:create' %}">
+                        <h4 style="font-family: 'NanumSquareRoundOTFB'">
+                            create profile
+                        </h4>
+                    </a>
                 {% else %}
-                    {% if target_user == user %}
-                        <a href="{% url 'profileapp:create' %}">
-                            <h4 style="font-family: 'NanumSquareRoundOTFB'">
-                                create profile
-                            </h4>
-                        </a>
-                        {% else %}
-                        <h2>
+                    <h2>
                         닉네임이 없습니다.
-                        </h2>
-                    {% endif %}
+                    </h2>
                 {% endif %}
+            {% endif %}
 
 
 
             {% if target_user == user %}
                 <a href="{% url 'accountapp:update' pk=user.pk %}">
-                    <p>
-                        Change Info
-                    </p>
+                    <span class="material-icons">
+                                settings
+                            </span>
                 </a>
                 <a href="{% url 'accountapp:delete' pk=user.pk %}">
-                    <p>
-                        Quit
-                    </p>
+                    <span class="material-icons">
+                                cancel
+                            </span>
                 </a>
             {% endif %}
         </div>
 
-    <div>
-        {% include 'snippets/list_fragment.html' with article_list=object_list %}
-    </div>
+        <div>
+            {% include 'snippets/list_fragment.html' with article_list=object_list %}
+        </div>
     </div>
 
 {% endblock %}
