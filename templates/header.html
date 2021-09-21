@@ -10,7 +10,10 @@
             <a href="{% url 'projectapp:list' %}" class="pragmatic_header_nav">
                 <span>Projects</span>
             </a>
-{#            <span>nav1</span>#}
+            <a href="{% url 'subscribeapp:list' %}" class="pragmatic_header_nav">
+                <span>Subscriptions</span>
+            </a>
+            {#            <span>nav1</span>#}
             {% if not user.is_authenticated %}
                 {#          내가 만든 홈페이지 어느에서든지 로그인을 하면 해당 url을 next인자로 넘겨주고 로그인을 하고나서 원래있는 자리로 돌아옴  #}
                 <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="pragmatic_header_nav">
