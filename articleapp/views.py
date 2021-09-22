@@ -11,6 +11,7 @@ from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
 from commentapp.forms import CommentCreationForm
+from copy import deepcopy
 
 
 @method_decorator(login_required, 'get')
@@ -63,4 +64,4 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
-    paginate_by = 8
+    paginate_by = 10

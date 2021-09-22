@@ -9,7 +9,7 @@
         <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post">
             {% csrf_token %}
             {#    view에서  form클래스 지정해준거(UserCreationForm 를 가지고 즉 html로 만들어줌  #}
-            <input type="submit" class="btn btn-danger rounded-pill col-6 mt-3" value="quit">
+            <input type="submit" class="btn btn-danger rounded-pill col-6 mt-3" value="탈퇴">
         </form>
     </div>
 
