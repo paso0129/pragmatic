@@ -17,6 +17,8 @@ from accountapp.models import HelloWorld
 from articleapp.models import Article
 
 has_ownership = [account_ownership_required, login_required]
+
+
 @login_required
 def hello_world(request):
     # 헤더에서 로그인했는지 안했는지 였는대 뷰에서도 똑같이 적용
@@ -54,8 +56,17 @@ class AccountCreateView(CreateView):
     form_class = UserCreationForm  # 이것 또한 기본제공 확인핤것
     # 성공햇다면 어디로 보낼것인가
     # 클래스형에서는 lazy사용..
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/create.html'
+
+    # def form_valid(self, form):
+    #     temp_user = form.save(commit=False)
+    #     temp_user.pk = self.request.user.pk
+    #     temp_user.save()
+    #     return super().form_valid(form)
+    #
+    # def get_success_url(self):
+    #     return reverse('accountapp:login', kwargs={'pk': self.object.pk})
 
 
 class AccountDetailView(DetailView, MultipleObjectMixin):
@@ -75,15 +86,23 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
 # 일반 함수에 사용하는 데코레이터를 메서드에 사용할수 있도록 변환해주는
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
-
 class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountUpdateForm
     # 성공햇다면 어디로 보낼것인가
     # 클래스형에서는 lazy사용..
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
+
+    # success_url = reverse_lazy('articleapp:list')
+    def form_valid(self, form):
+        temp_user = form.save(commit=False)
+        temp_user.pk = self.request.user.pk
+        temp_user.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
 
 
 @method_decorator(has_ownership, 'get')
